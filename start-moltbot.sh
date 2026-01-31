@@ -163,6 +163,13 @@ if (config.models?.providers?.anthropic?.models) {
     }
 }
 
+// Clean up any broken openai provider config from previous runs
+// (older versions used 'openai-chat' which is not a valid api type)
+if (config.models?.providers?.openai?.api === 'openai-chat') {
+    console.log('Removing broken openai provider config (invalid api type: openai-chat)');
+    delete config.models.providers.openai;
+}
+
 
 
 // Gateway configuration
